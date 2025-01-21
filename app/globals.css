@@ -12,3 +12,44 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* TailWind CSS */
+.base-button {
+  @apply border-b-4 border-[#0e0e0e] rounded m-2 py-1 px-4 bg-[#252525] hover:bg-[#1a1919] active:bg-[#1a1919] active:border-0 active:before:border-t-4;
+  position: relative;
+}
+
+.base-button::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top-width: 2px;
+  border-color: #0e0e0e;
+  opacity: 0;
+  border-radius: 4px;
+}
+
+.base-button:active::before {
+  opacity: 1; /* Hide the pseudo-element on active state */
+}
+
+.base-button-long {
+  @apply border-b-4 rounded m-2 active:border-0 active:before:border-t-4;
+  position: relative;
+}
+
+.base-button-long::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top-width: 2px;
+  border-color: #0e0e0e;
+  opacity: 0;
+  border-radius: 4px;
+}
+
+.base-button-long:active::before {
+  opacity: 1; /* Hide the pseudo-element on active state */
+}

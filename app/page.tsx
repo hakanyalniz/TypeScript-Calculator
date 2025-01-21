@@ -14,57 +14,29 @@ export default function Home() {
             Screen
           </div>
           <div className="button-pad font-[family-name:var(--font-nova-mono)] bg-[#407c8f]">
-            <button className="border-b-4 border-[#3f0e0e] rounded m-2 py-1 px-10 bg-red-700">
+            <button className="base-button-long py-1 px-10 bg-red-700 hover:bg-[#611818] border-[#3d0d0d] ">
               AC
             </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              /
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              x
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              7
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              8
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              9
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              -
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              4
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              5
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              6
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              +
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              1
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              2
-            </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              3
-            </button>
-            <button className="border-b-4 border-[#0f1446] rounded m-2 py-[1.8rem] px-4 bg-blue-700 absolute">
+            <button className="base-button bg-black">/</button>
+            <button className="base-button bg-black">x</button>
+            <button className="base-button bg-black">7</button>
+            <button className="base-button bg-black">8</button>
+            <button className="base-button bg-black">9</button>
+            <button className="base-button bg-black">-</button>
+            <button className="base-button bg-black">4</button>
+            <button className="base-button bg-black">5</button>
+            <button className="base-button bg-black">6</button>
+            <button className="base-button bg-black">+</button>
+            <button className="base-button bg-black">1</button>
+            <button className="base-button bg-black">2</button>
+            <button className="base-button bg-black">3</button>
+            <button className="base-button-long border-[#0f1446] py-[1.8rem] px-4 bg-blue-700 hover:bg-[#17275a] !absolute">
               =
             </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-[2.8rem] bg-black">
+            <button className="base-button-long border-[#1d1d1d] py-1 px-[2.8rem] bg-black ">
               0
             </button>
-            <button className="border-b-4 border-[#1d1d1d] rounded m-2 py-1 px-4 bg-black">
-              .
-            </button>
+            <button className="base-button bg-black">.</button>
           </div>
         </div>
       </div>
