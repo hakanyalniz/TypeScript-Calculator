@@ -6,22 +6,35 @@ export default function Home() {
   return (
     <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <div
-        className="border-2 border-white h-[395px] w-[244px]"
+        className="border-2 border-white h-[395px] w-[244px] shadow-inner"
         id="calculator-container"
+        style={{ boxShadow: "rgba(0, 0, 0, 0.2) 0px 0px 10px 5px" }}
       >
         <div
           className="border-2 border-red-400 h-full bg-[#1a3942]"
           id="calculator-inner"
+          style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px 5px" }}
         >
-          <div className="border border-white h-10">Sunlight</div>
-          <div className="border-y-8 border-white h-20 bg-black pt-8 pr-2 text-right">
+          <div
+            className="border border-white h-10 bg-neutral-900"
+            style={{ boxShadow: "inset rgba(0, 0, 0, 0.3) 0px 0px 10px 5px" }}
+          >
+            Sunlight
+          </div>
+          <div
+            className="border-y-8 border-white h-20 bg-slate-900 pt-8 pr-2 text-right"
+            style={{ boxShadow: "inset rgba(0, 0, 0, 0.3) 0px 0px 10px 5px" }}
+          >
             Screen
           </div>
-          <div className="button-pad font-[family-name:var(--font-nova-mono)] bg-[#407c8f]">
+          <div
+            className="button-pad font-[family-name:var(--font-nova-mono)] bg-[#407c8f]"
+            style={{ boxShadow: "inset rgba(0, 0, 0, 0.2) 0px 0px 10px 5px" }}
+          >
             {/* The className here below belongs to the props passed onto the component and not for tailwind */}
             <ButtonWithSound
               text="AC"
-              className="base-button-long py-1 px-10 bg-red-700 hover:bg-[#611818] border-[#3d0d0d] "
+              className="base-button-long py-1 px-10 bg-red-700 hover:bg-[#611818] border-[#3d0d0d]"
             />
             <ButtonWithSound text="/" className="base-button" />
             <ButtonWithSound text="x" className="base-button" />
@@ -42,7 +55,7 @@ export default function Home() {
             />
             <ButtonWithSound
               text="0"
-              className="base-button-long border-[#1d1d1d] py-1 px-[2.8rem] bg-black"
+              className="base-button-long border-[#1d1d1d] py-1 px-[2.8rem] bg-[#252525]"
             />
             <ButtonWithSound text="." className="base-button" />
           </div>
