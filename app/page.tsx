@@ -55,7 +55,7 @@ export default function Home() {
             />
             <ButtonWithSound
               text="0"
-              className="base-button-long border-[#1d1d1d] py-1 px-[2.8rem] bg-[#252525]"
+              className="base-button-long py-1 px-[2.8rem] border-[#1d1d1d] hover:bg-[#1a1919] bg-[#252525]"
             />
             <ButtonWithSound text="." className="base-button" />
           </div>
