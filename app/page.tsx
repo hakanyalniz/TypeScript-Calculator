@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import ButtonWithSound from "./components/button/button";
 
 export default function Home() {
-  const [currentInput, setCurrentInput] = useState<string>("");
+  const [firstNumberArray, setFirstNumberArray] = useState<string[]>([]);
   const buttonPadRef = useRef<HTMLDivElement | null>(null);
 
   // useEffect is used to make sure the number pad is initialized
@@ -17,17 +17,27 @@ export default function Home() {
           const buttonValue = target.textContent || "";
 
           if (!isNaN(Number(buttonValue)) || buttonValue === ".") {
-            // If the clicked button is a number or dot, add it to the current input
-            setCurrentInput((prevInput) => prevInput + buttonValue);
+            // If the clicked button is a number or dot, add it to the first number array
+            // Like so: ['8', '7']
+            setFirstNumberArray((firstNumberArray) => [
+              ...firstNumberArray,
+              buttonValue,
+            ]);
           }
         }
       });
     }
   }, []);
 
+  // Take an array of string and flatten it into a number
+  // ['8', '7'] => 87
+  const flattenArrayIntoNumber = (arrayToFlatten: string[]): number => {
+    return parseInt(arrayToFlatten.join(""), 10);
+  };
+
   useEffect(() => {
-    console.log(currentInput);
-  }, [currentInput]);
+    console.log(firstNumberArray);
+  }, [firstNumberArray]);
 
   return (
     <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
