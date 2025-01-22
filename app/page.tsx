@@ -1,8 +1,34 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import ButtonWithSound from "./components/button/button";
 
 export default function Home() {
+  const [currentInput, setCurrentInput] = useState<string>("");
+  const buttonPadRef = useRef<HTMLDivElement | null>(null);
+
+  // useEffect is used to make sure the number pad is initialized
+  useEffect(() => {
+    if (buttonPadRef.current) {
+      buttonPadRef.current.addEventListener("click", (event: MouseEvent) => {
+        const target = event.target as HTMLElement;
+
+        if (target.tagName === "BUTTON") {
+          const buttonValue = target.textContent || "";
+
+          if (!isNaN(Number(buttonValue)) || buttonValue === ".") {
+            // If the clicked button is a number or dot, add it to the current input
+            setCurrentInput((prevInput) => prevInput + buttonValue);
+          }
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(currentInput);
+  }, [currentInput]);
+
   return (
     <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <div
@@ -28,7 +54,9 @@ export default function Home() {
             Screen
           </div>
           <div
-            className="button-pad font-[family-name:var(--font-nova-mono)] bg-[#407c8f]"
+            className="font-[family-name:var(--font-nova-mono)] bg-[#407c8f]"
+            id="button-pad"
+            ref={buttonPadRef}
             style={{ boxShadow: "inset rgba(0, 0, 0, 0.2) 0px 0px 10px 5px" }}
           >
             {/* The className here below belongs to the props passed onto the component and not for tailwind */}
