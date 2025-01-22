@@ -4,7 +4,9 @@ import { useEffect, useState, useRef } from "react";
 import ButtonWithSound from "./components/button/button";
 
 export default function Home() {
-  const [firstNumberArray, setFirstNumberArray] = useState<string[]>([]);
+  const [calcResult, setCalcResult] = useState<number | null>(null);
+  const [calculatorString, setCalculatorString] = useState<string>("");
+  const calculatorStringRef = useRef<string>("");
   const buttonPadRef = useRef<HTMLDivElement | null>(null);
 
   // useEffect is used to make sure the number pad is initialized
@@ -16,28 +18,40 @@ export default function Home() {
         if (target.tagName === "BUTTON") {
           const buttonValue = target.textContent || "";
 
-          if (!isNaN(Number(buttonValue)) || buttonValue === ".") {
-            // If the clicked button is a number or dot, add it to the first number array
-            // Like so: ['8', '7']
-            setFirstNumberArray((firstNumberArray) => [
-              ...firstNumberArray,
-              buttonValue,
-            ]);
+          if (buttonValue === "AC") {
+            setCalculatorString("");
+            setCalcResult(null);
+          } else if (buttonValue != "=") {
+            setCalcResult(null);
+            // If the clicked button is a number or dot, add it
+            // Like so: ['87']
+            setCalculatorString(
+              (calculatorString) => calculatorString + buttonValue
+            );
+          } else if (buttonValue === "=") {
+            setCalcResult(eval(calculatorStringRef.current));
+
+            // Reset after showing the results
+            setCalculatorString("");
           }
         }
       });
     }
   }, []);
 
-  // Take an array of string and flatten it into a number
-  // ['8', '7'] => 87
-  const flattenArrayIntoNumber = (arrayToFlatten: string[]): number => {
-    return parseInt(arrayToFlatten.join(""), 10);
-  };
-
   useEffect(() => {
-    console.log(firstNumberArray);
-  }, [firstNumberArray]);
+    calculatorStringRef.current = calculatorString;
+  }, [calculatorString]);
+
+  let screenDisplay;
+  if (calcResult === 0) {
+    console.log(calcResult);
+    screenDisplay = 0;
+  } else if (calcResult) {
+    screenDisplay = calcResult;
+  } else {
+    screenDisplay = calculatorString;
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
@@ -60,8 +74,9 @@ export default function Home() {
           <div
             className="border-y-8 border-white h-20 bg-slate-900 pt-8 pr-2 text-right"
             style={{ boxShadow: "inset rgba(0, 0, 0, 0.3) 0px 0px 10px 5px" }}
+            id="result-screen"
           >
-            Screen
+            {screenDisplay}
           </div>
           <div
             className="font-[family-name:var(--font-nova-mono)] bg-[#407c8f]"
@@ -75,7 +90,7 @@ export default function Home() {
               className="base-button-long py-1 px-10 bg-red-700 hover:bg-[#611818] border-[#3d0d0d]"
             />
             <ButtonWithSound text="/" className="base-button" />
-            <ButtonWithSound text="x" className="base-button" />
+            <ButtonWithSound text="*" className="base-button" />
             <ButtonWithSound text="7" className="base-button" />
             <ButtonWithSound text="8" className="base-button" />
             <ButtonWithSound text="9" className="base-button" />
