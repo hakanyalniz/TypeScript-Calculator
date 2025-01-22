@@ -6,17 +6,17 @@ export default function Home() {
   return (
     <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <div
-        className="border-2 border-white h-[395px] w-[244px] shadow-inner"
+        className="border-8 border-white border-b-slate-400 h-[410px] w-[252px] shadow-inner"
         id="calculator-container"
         style={{ boxShadow: "rgba(0, 0, 0, 0.2) 0px 0px 10px 5px" }}
       >
         <div
-          className="border-2 border-red-400 h-full bg-[#1a3942]"
+          className="border-4 border-gray-800 border-b-black h-full bg-[#1a3942]"
           id="calculator-inner"
           style={{ boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px 5px" }}
         >
           <div
-            className="border border-white h-10 bg-neutral-900"
+            className="h-10 bg-neutral-900"
             style={{ boxShadow: "inset rgba(0, 0, 0, 0.3) 0px 0px 10px 5px" }}
           >
             Sunlight

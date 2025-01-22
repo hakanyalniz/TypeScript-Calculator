@@ -15,7 +15,8 @@ body {
 
 /* TailWind CSS */
 .base-button {
-  @apply relative border-b-4 border-[#0e0e0e] rounded m-2 py-1 px-4 bg-[#252525] hover:bg-[#1a1919] active:bg-[#1a1919] active:border-0 active:before:border-t-4;
+  @apply relative border-b-4 border-[#0e0e0e] rounded m-2 py-1 px-4 bg-[#252525] hover:bg-[#1a1919] active:bg-[#1a1919]
+  active:border-0 active:before:border-t-4 select-none;
 }
 
 .base-button::before {
@@ -34,7 +35,7 @@ body {
 }
 
 .base-button-long {
-  @apply border-b-4 rounded m-2 active:border-0 active:before:border-t-4;
+  @apply border-b-4 rounded m-2 active:border-0 active:before:border-t-4 select-none;
   position: relative;
 }
 
