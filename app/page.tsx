@@ -7,16 +7,38 @@ export default function Home() {
   const [calcResult, setCalcResult] = useState<number | null>(null);
   const [calculatorString, setCalculatorString] = useState<string>("");
 
+  // So, 5+-3 is equal to 5-3
+  // Except in 5*-2, where in behaves as 5*(-2)
+  function normalizeOperators(expression: string) {
+    // Replace consecutive operators with the last one, while handling '-' correctly
+    expression = expression.replace(/(\+|\*|\/)(?=\+|\*|\/)/g, ""); // Handle +, *, /
+
+    // Handle cases where '-' is involved with other operators
+    expression = expression.replace(/(\-)(?=\+|\*|\/)/g, ""); // Remove '-' if followed by +, * or /
+
+    return expression;
+  }
+
+  const normalizedString = normalizeOperators(calculatorString);
+
   const calculate = () => {
     // Extract numbers and operators using regex
-    const numbers = calculatorString.match(/(\d+(\.\d+)?)/g)?.map(Number) || []; // Use optional chaining and fallback to an empty array
-    const operators = calculatorString.match(/[+\-*/]/g);
+    const numbers = normalizedString.match(/(\d+(\.\d+)?)/g)?.map(Number) || []; // Use optional chaining and fallback to an empty array
+    const operators = normalizedString.match(/[\+\-\*\/]+(?=\d|\s*\d)/g) || [];
 
     // Perform the operations respecting precedence
     // Handle *, / first
     if (operators) {
       for (let i = 0; i < operators.length; i++) {
-        if (operators[i] === "*" || operators[i] === "/") {
+        if (operators[i] === "*-" || operators[i] === "/-") {
+          const result =
+            operators[i] === "*-"
+              ? numbers[i] * -numbers[i + 1]
+              : numbers[i] / -numbers[i + 1];
+          numbers.splice(i, 2, result); // Replace the two numbers with the result
+          operators.splice(i, 1); // Remove the operator
+          i--; // Re-check the same index
+        } else if (operators[i] === "*" || operators[i] === "/") {
           const result =
             operators[i] === "*"
               ? numbers[i] * numbers[i + 1]
@@ -30,9 +52,13 @@ export default function Home() {
       // Handle +, - next
       let result = numbers[0];
       for (let i = 0; i < operators.length; i++) {
-        if (operators[i] === "+") {
+        if (
+          operators[i] === "+" ||
+          operators[i] === "-+" ||
+          operators[i] === "*+"
+        ) {
           result += numbers[i + 1];
-        } else if (operators[i] === "-") {
+        } else if (operators[i] === "-" || operators[i] === "+-") {
           result -= numbers[i + 1];
         }
       }
